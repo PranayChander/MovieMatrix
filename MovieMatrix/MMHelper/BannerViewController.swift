@@ -25,7 +25,7 @@ class BannerViewController: OverlayViewController {
     var trailingConstraint: NSLayoutConstraint?
     
     override func present(in window: UIWindow) {
-        
+
         let bannerView = BannerView()
         self.view = bannerView
         

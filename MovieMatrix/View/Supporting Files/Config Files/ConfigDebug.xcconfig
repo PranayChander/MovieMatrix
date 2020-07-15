@@ -1,0 +1,15 @@
+//
+//  ConfigDebug.xcconfig
+//  MovieMatrix
+//
+//  Created by pranay chander on 15/07/20.
+//  Copyright © 2020 pranay chander. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APPLICATION_NAME = MM DEBUG
+DISPLAY_NAME = MM DEBUG
+APP_VERSION = 1.0
+BUILD_VERSION = 1.1

@@ -98,7 +98,6 @@ extension AppDelegate {
             if self.splashVC == nil {
                 self.splashVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SplashScreenViewController") as? SplashScreenViewController
             }
-            let ar = ["sd","dajdh"]
             self.window?.addSubview(self.splashVC!.view)
         } else {
             self.splashVC?.view.removeFromSuperview()

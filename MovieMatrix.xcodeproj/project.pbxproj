@@ -12,6 +12,7 @@
 		9D4BF71324B46182002C2DB9 /* MMNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4BF71224B46182002C2DB9 /* MMNetworkClient.swift */; };
 		9D4BF71924B465C2002C2DB9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4BF71824B465C2002C2DB9 /* LoginViewController.swift */; };
 		9D4BF71C24B46AA9002C2DB9 /* MMButtton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4BF71B24B46AA9002C2DB9 /* MMButtton.swift */; };
+		9D539E4424BF18DD00628B83 /* ConfigurationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D539E4324BF18DD00628B83 /* ConfigurationHandler.swift */; };
 		9D86C18D24B5DED6009616EB /* MMLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86C18C24B5DED6009616EB /* MMLocalData.swift */; };
 		9D86C18F24B5DF55009616EB /* MMMediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86C18E24B5DF55009616EB /* MMMediaTypes.swift */; };
 		9D86C19124B5DFA8009616EB /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86C19024B5DFA8009616EB /* LoginRequest.swift */; };
@@ -84,6 +85,10 @@
 		9D4BF71224B46182002C2DB9 /* MMNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMNetworkClient.swift; sourceTree = "<group>"; };
 		9D4BF71824B465C2002C2DB9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9D4BF71B24B46AA9002C2DB9 /* MMButtton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMButtton.swift; sourceTree = "<group>"; };
+		9D539E4324BF18DD00628B83 /* ConfigurationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationHandler.swift; sourceTree = "<group>"; };
+		9D539E4624BF1B4D00628B83 /* ConfigRelease.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ConfigRelease.xcconfig; sourceTree = "<group>"; };
+		9D539E4724BF1B6100628B83 /* ConfigDebug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ConfigDebug.xcconfig; sourceTree = "<group>"; };
+		9D539E4824BF1B7E00628B83 /* ConfigMocked.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ConfigMocked.xcconfig; sourceTree = "<group>"; };
 		9D86C18C24B5DED6009616EB /* MMLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMLocalData.swift; sourceTree = "<group>"; };
 		9D86C18E24B5DF55009616EB /* MMMediaTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMMediaTypes.swift; sourceTree = "<group>"; };
 		9D86C19024B5DFA8009616EB /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
@@ -101,7 +106,7 @@
 		9D86C1AA24B5E2E9009616EB /* WatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
 		9D86C1AC24B5E31D009616EB /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		9D86C1AE24B5E35E009616EB /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		9D8AA4E224B3022200915BF8 /* MovieMatrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieMatrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D8AA4E224B3022200915BF8 /* MM DEBUG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MM DEBUG.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8AA4E524B3022200915BF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D8AA4EC24B3022200915BF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9D8AA4EF24B3022200915BF8 /* MovieMatrix.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieMatrix.xcdatamodel; sourceTree = "<group>"; };
@@ -242,6 +247,7 @@
 		9D4BF71A24B46A77002C2DB9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9D539E4524BF1B1B00628B83 /* Config Files */,
 				9D4BF71B24B46AA9002C2DB9 /* MMButtton.swift */,
 				9D8C874A24B74AB700714529 /* MovieRatingView.swift */,
 				9D8C874624B733B900714529 /* SearchMovieTableViewCell.swift */,
@@ -253,6 +259,16 @@
 				9D8C873F24B6F9D100714529 /* MovieCollectionViewCell.xib */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9D539E4524BF1B1B00628B83 /* Config Files */ = {
+			isa = PBXGroup;
+			children = (
+				9D539E4624BF1B4D00628B83 /* ConfigRelease.xcconfig */,
+				9D539E4724BF1B6100628B83 /* ConfigDebug.xcconfig */,
+				9D539E4824BF1B7E00628B83 /* ConfigMocked.xcconfig */,
+			);
+			path = "Config Files";
 			sourceTree = "<group>";
 		};
 		9D8AA4D924B3022200915BF8 = {
@@ -268,7 +284,7 @@
 		9D8AA4E324B3022200915BF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9D8AA4E224B3022200915BF8 /* MovieMatrix.app */,
+				9D8AA4E224B3022200915BF8 /* MM DEBUG.app */,
 				9D8AA4FB24B3022600915BF8 /* MovieMatrixTests.xctest */,
 				9D8AA50624B3022600915BF8 /* MovieMatrixUITests.xctest */,
 			);
@@ -323,6 +339,7 @@
 				9DE071EA24BDCD140052715C /* BezelNotificationView.xib */,
 				9D86C1AE24B5E35E009616EB /* UIViewController+Extension.swift */,
 				9DE071DE24BD8C5B0052715C /* UIStoryboard + Extension.swift */,
+				9D539E4324BF18DD00628B83 /* ConfigurationHandler.swift */,
 			);
 			path = MMHelper;
 			sourceTree = "<group>";
@@ -360,7 +377,7 @@
 				9DE071EF24BDE4F30052715C /* Alamofire */,
 			);
 			productName = MovieMatrix;
-			productReference = 9D8AA4E224B3022200915BF8 /* MovieMatrix.app */;
+			productReference = 9D8AA4E224B3022200915BF8 /* MM DEBUG.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9D8AA4FA24B3022600915BF8 /* MovieMatrixTests */ = {
@@ -519,6 +536,7 @@
 				9D86C18D24B5DED6009616EB /* MMLocalData.swift in Sources */,
 				9D43232624BC5003009AD58C /* MMTabBarController.swift in Sources */,
 				9DE071DB24BD889B0052715C /* UIButton + Extension.swift in Sources */,
+				9D539E4424BF18DD00628B83 /* ConfigurationHandler.swift in Sources */,
 				9D86C19924B5E027009616EB /* MarkFavorite.swift in Sources */,
 				9D8C873D24B6F7D600714529 /* HomeViewController.swift in Sources */,
 				9D86C19724B5E006009616EB /* MarkWatchlist.swift in Sources */,
@@ -597,6 +615,130 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9D539E3F24BEEEC100628B83 /* Mocked */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Mocked;
+		};
+		9D539E4024BEEEC100628B83 /* Mocked */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D539E4824BF1B7E00628B83 /* ConfigMocked.xcconfig */;
+			buildSettings = {
+				APP_ID = MM_MOCKED;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Mocked";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
+				DEVELOPMENT_TEAM = 77S45L7QZX;
+				INFOPLIST_FILE = MovieMatrix/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(APP_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranaychander.MovieMatrix.mocked;
+				PRODUCT_NAME = "$(DISPLAY_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Mocked;
+		};
+		9D539E4124BEEEC100628B83 /* Mocked */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 77S45L7QZX;
+				INFOPLIST_FILE = MovieMatrixTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pranaychander.MovieMatrixTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieMatrix.app/MovieMatrix";
+			};
+			name = Mocked;
+		};
+		9D539E4224BEEEC100628B83 /* Mocked */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 77S45L7QZX;
+				INFOPLIST_FILE = MovieMatrixUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pranaychander.MovieMatrixUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MovieMatrix;
+			};
+			name = Mocked;
+		};
 		9D8AA50D24B3022600915BF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -713,17 +855,21 @@
 		};
 		9D8AA51024B3022600915BF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D539E4724BF1B6100628B83 /* ConfigDebug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APP_ID = MM_DEBUG;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Debug";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
 				DEVELOPMENT_TEAM = 77S45L7QZX;
 				INFOPLIST_FILE = MovieMatrix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pranaychander.MovieMatrix;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = "$(APP_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranaychander.MovieMatrix.debug;
+				PRODUCT_NAME = "$(DISPLAY_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -731,17 +877,21 @@
 		};
 		9D8AA51124B3022600915BF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D539E4624BF1B4D00628B83 /* ConfigRelease.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APP_ID = MM_RELEASE;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Release";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
 				DEVELOPMENT_TEAM = 77S45L7QZX;
 				INFOPLIST_FILE = MovieMatrix/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pranaychander.MovieMatrix;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				MARKETING_VERSION = "$(APP_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pranaychander.MovieMatrix.release;
+				PRODUCT_NAME = "$(DISPLAY_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -838,6 +988,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D8AA50D24B3022600915BF8 /* Debug */,
+				9D539E3F24BEEEC100628B83 /* Mocked */,
 				9D8AA50E24B3022600915BF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -847,6 +998,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D8AA51024B3022600915BF8 /* Debug */,
+				9D539E4024BEEEC100628B83 /* Mocked */,
 				9D8AA51124B3022600915BF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -856,6 +1008,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D8AA51324B3022600915BF8 /* Debug */,
+				9D539E4124BEEEC100628B83 /* Mocked */,
 				9D8AA51424B3022600915BF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -865,6 +1018,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D8AA51624B3022600915BF8 /* Debug */,
+				9D539E4224BEEEC100628B83 /* Mocked */,
 				9D8AA51724B3022600915BF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
