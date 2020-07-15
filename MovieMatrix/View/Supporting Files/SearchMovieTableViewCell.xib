@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchMovieTableViewCell" rowHeight="60" id="KGk-i7-Jjw" customClass="SearchMovieTableViewCell" customModule="MovieMatrix" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Mej-r0-IqN">
+                        <rect key="frame" x="8" y="8" width="304" height="44"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tv" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3g0-jK-oRj">
+                                <rect key="frame" x="0.0" y="12.5" width="100" height="19"/>
+                                <color key="tintColor" red="0.18823529410000001" green="0.73333333329999995" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="HE7-bb-leH"/>
+                                    <constraint firstAttribute="width" constant="100" id="igD-Xj-Gqo"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="1dv-6c-UKV">
+                                <rect key="frame" x="108" y="0.0" width="196" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYj-aU-iSR">
+                                        <rect key="frame" x="0.0" y="0.0" width="80.5" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                        <color key="textColor" red="0.98823529409999999" green="0.98823529409999999" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKy-8X-btP">
+                                        <rect key="frame" x="0.0" y="26" width="37.5" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" red="0.18823529410000001" green="0.73333333329999995" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0m2-LI-LCQ" customClass="MovieRatingView" customModule="MovieMatrix" customModuleProvider="target">
+                        <rect key="frame" x="63" y="-5" width="40" height="40"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="VMz-TJ-A42"/>
+                            <constraint firstAttribute="width" constant="40" id="sLx-Lk-DMV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.050980392159999999" green="0.14117647059999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Mej-r0-IqN" secondAttribute="bottom" constant="8" id="5Ld-VG-Y4L"/>
+                    <constraint firstItem="Mej-r0-IqN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="XXk-2q-ugh"/>
+                    <constraint firstAttribute="trailing" secondItem="Mej-r0-IqN" secondAttribute="trailing" constant="8" id="ZXo-3J-tgD"/>
+                    <constraint firstItem="Mej-r0-IqN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ewm-76-suB"/>
+                    <constraint firstItem="0m2-LI-LCQ" firstAttribute="bottom" secondItem="3g0-jK-oRj" secondAttribute="bottom" constant="-5" id="f37-uv-Z2x"/>
+                    <constraint firstItem="0m2-LI-LCQ" firstAttribute="trailing" secondItem="3g0-jK-oRj" secondAttribute="trailing" constant="-5" id="t8M-pZ-so7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieImage" destination="3g0-jK-oRj" id="qPc-tL-VIW"/>
+                <outlet property="movieName" destination="TYj-aU-iSR" id="EHl-d0-DON"/>
+                <outlet property="ratingIndicator" destination="0m2-LI-LCQ" id="dBj-aI-aWY"/>
+                <outlet property="releaseDate" destination="bKy-8X-btP" id="0gb-yi-h1o"/>
+            </connections>
+            <point key="canvasLocation" x="124.6376811594203" y="111.83035714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="tv" catalog="system" width="64" height="46"/>
+    </resources>
+</document>
