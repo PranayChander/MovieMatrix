@@ -10,7 +10,7 @@
         <!--Splash Screen View Controller-->
         <scene sceneID="pSO-tc-m44">
             <objects>
-                <viewController storyboardIdentifier="SplashScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0KJ-PW-mP2" customClass="SplashScreenViewController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SplashScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0KJ-PW-mP2" customClass="SplashScreenViewController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dsQ-cO-KsD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +38,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -56,7 +56,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rss-pB-beb" customClass="MMButton" customModule="MovieMatrix" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rss-pB-beb" customClass="MMButton" customModule="MM_DEBUG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="108" width="331" height="34"/>
                                         <color key="backgroundColor" red="0.36862745099999999" green="0.72156862749999995" blue="0.81176470590000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -84,7 +84,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4D-e6-NHL" customClass="MMButton" customModule="MovieMatrix" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h4D-e6-NHL" customClass="MMButton" customModule="MM_DEBUG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="201.5" width="331" height="34"/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.73333333329999995" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
@@ -138,7 +138,7 @@
         <!--Search-->
         <scene sceneID="0WG-y8-JeT">
             <objects>
-                <viewController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalPresentationStyle="overFullScreen" id="wNO-b2-Gpg" customClass="SearchViewController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalPresentationStyle="overFullScreen" id="wNO-b2-Gpg" customClass="SearchViewController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Giq-KF-fIB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,6 +164,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pQT-lf-vBk">
                                 <rect key="frame" x="0.0" y="112" width="414" height="647"/>
                                 <color key="backgroundColor" red="0.050980392159999999" green="0.14117647059999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="separatorColor" red="0.18823529410000001" green="0.73333333329999995" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="dataSource" destination="wNO-b2-Gpg" id="Wdi-f3-iIf"/>
                                     <outlet property="delegate" destination="wNO-b2-Gpg" id="MRF-GZ-KhC"/>
@@ -195,21 +196,22 @@
         <!--Watchlist-->
         <scene sceneID="pbA-cP-kHx">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="RaO-Lv-2nb" customClass="WatchlistViewController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="RaO-Lv-2nb" customClass="WatchlistViewController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yPJ-Gk-G2W">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2a0-EW-sqT">
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.050980392159999999" green="0.14117647059999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="separatorColor" red="0.18823529410000001" green="0.73333333329999995" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="dataSource" destination="RaO-Lv-2nb" id="dEU-UL-1iV"/>
                                     <outlet property="delegate" destination="RaO-Lv-2nb" id="rbI-B7-CGH"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.050980392159999999" green="0.14117647059999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="G1M-lJ-kUZ" firstAttribute="bottom" secondItem="2a0-EW-sqT" secondAttribute="bottom" id="7Le-aQ-FhB"/>
                             <constraint firstItem="G1M-lJ-kUZ" firstAttribute="trailing" secondItem="2a0-EW-sqT" secondAttribute="trailing" id="B04-iV-C27"/>
@@ -231,7 +233,7 @@
         <!--Movie Detail View Controller-->
         <scene sceneID="JN4-E0-mQZ">
             <objects>
-                <viewController storyboardIdentifier="movieDetail" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjc-uz-s0k" customClass="MovieDetailViewController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="movieDetail" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bjc-uz-s0k" customClass="MovieDetailViewController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="joc-ku-Wqd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,7 +254,7 @@
                                     <action selector="dismiss:" destination="bjc-uz-s0k" eventType="touchUpInside" id="aeB-PF-lcQ"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ten-cY-AhX" customClass="MovieRatingView" customModule="MovieMatrix" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ten-cY-AhX" customClass="MovieRatingView" customModule="MM_DEBUG" customModuleProvider="target">
                                 <rect key="frame" x="304" y="558" width="100" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -374,21 +376,22 @@
         <!--Favorites-->
         <scene sceneID="hPb-fQ-chM">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="x9m-UZ-y5R" customClass="FavoritesViewController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="x9m-UZ-y5R" customClass="FavoritesViewController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nzj-dQ-75g">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jYo-gS-f13">
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.050980392159999999" green="0.14117647059999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="separatorColor" red="0.18823529410000001" green="0.73333333329999995" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="dataSource" destination="x9m-UZ-y5R" id="qZD-YV-oBS"/>
                                     <outlet property="delegate" destination="x9m-UZ-y5R" id="CI2-iR-0E4"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.050980392159999999" green="0.14117647059999999" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="jYo-gS-f13" firstAttribute="top" secondItem="yqs-ZV-5pf" secondAttribute="top" id="GHv-T6-LqL"/>
                             <constraint firstItem="yqs-ZV-5pf" firstAttribute="bottom" secondItem="jYo-gS-f13" secondAttribute="bottom" id="S08-dJ-01f"/>
@@ -410,7 +413,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="p77-gG-7Vs">
             <objects>
-                <tabBarController storyboardIdentifier="MMTabBarController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xjC-lv-cp0" customClass="MMTabBarController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MMTabBarController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xjC-lv-cp0" customClass="MMTabBarController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="zYt-dX-k60"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="a8G-su-2Q0">
@@ -438,7 +441,7 @@
         <!--Home-->
         <scene sceneID="2CC-go-x6d">
             <objects>
-                <viewController title="Home" modalPresentationStyle="fullScreen" id="qx2-HZ-6hS" customClass="HomeViewController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" modalPresentationStyle="fullScreen" id="qx2-HZ-6hS" customClass="HomeViewController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jC8-PQ-ahP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -537,7 +540,7 @@
         <!--Profile-->
         <scene sceneID="jge-Mc-BhH">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="F03-3b-MNf" customClass="ProfileViewController" customModule="MovieMatrix" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="F03-3b-MNf" customClass="ProfileViewController" customModule="MM_DEBUG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wKs-ML-QNs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -549,7 +552,7 @@
                                     <constraint firstAttribute="width" constant="100" id="kOO-GF-qmt"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7O-NH-MFw" customClass="MovieRatingView" customModule="MovieMatrix" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E7O-NH-MFw" customClass="MovieRatingView" customModule="MM_DEBUG" customModuleProvider="target">
                                 <rect key="frame" x="157" y="371" width="100" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>

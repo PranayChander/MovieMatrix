@@ -8,6 +8,15 @@
 
 import Foundation
 
+//Swift provides a synthesized implementation of Equatable for the following kinds of custom types:
+//https://docs.swift.org/swift-book/LanguageGuide/Protocols.html
+//Structures that have only stored properties that conform to the Equatable protocol
+//Enumerations that have only associated types that conform to the Equatable protocol
+//Enumerations that have no associated types
+
+//Conforming to Equatable so that movies can be filtered based on struct
+// All attributes conform to equatable in the struct
+
 struct Movie: Codable, Equatable {
     let posterPath: String?
     let adult: Bool

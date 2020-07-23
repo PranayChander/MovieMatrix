@@ -16,7 +16,7 @@ class WatchlistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "SearchMovieTableViewCell", bundle: nil), forCellReuseIdentifier: MMTableViewCellIdentifiers.searchTableCell)
+        tableView.registerTableViewCell(withIdentifier: MMTableViewCellIdentifiers.searchCell)
         tableView.tableFooterView = UIView()
         _ = MMNetworkClient.getWatchlist() { movies, error in
             MovieModel.watchlist = movies
@@ -32,12 +32,11 @@ class WatchlistViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == MMSegueIdentifiers.movieDetail {
             let detailVC = segue.destination as! MovieDetailViewController
             detailVC.movie = MovieModel.watchlist[selectedIndex]
         }
     }
-    
 }
 
 extension WatchlistViewController: UITableViewDataSource, UITableViewDelegate {
@@ -50,7 +49,7 @@ extension WatchlistViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MMTableViewCellIdentifiers.searchTableCell) as? SearchMovieTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MMTableViewCellIdentifiers.searchCell) as? SearchMovieTableViewCell
         let movie = MovieModel.watchlist[indexPath.row]
         cell?.movieName.text? = movie.title
         cell?.releaseDate.text = MMUtilities.sharedInstance.getformattedDateForString(dateString: movie.releaseDate)
@@ -77,5 +76,4 @@ extension WatchlistViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 116
     }
-    
 }

@@ -20,11 +20,16 @@ struct MMSegueIdentifiers {
 }
 
 struct MMTableViewCellIdentifiers {
-    static let searchTableCell = "SearchMovieTableViewCell"
+    static let searchCell = "SearchMovieTableViewCell"
+}
+
+struct MMCollectionViewCellIdentifiers {
+    static let movieCell = "MovieCollectionViewCell"
 }
 
 struct MMStringConstants {
     static let loginFailed = "Login Failed"
     static let OK = "OK"
 }
+
 

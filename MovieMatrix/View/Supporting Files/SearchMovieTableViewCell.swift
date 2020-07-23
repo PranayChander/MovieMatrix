@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import Combine
 
 class SearchMovieTableViewCell: UITableViewCell {
-
     @IBOutlet weak var movieName: UILabel!
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var ratingIndicator: MovieRatingView!
     
+    // Using combine in searchVC
+    var subscriber: AnyCancellable?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,10 +24,10 @@ class SearchMovieTableViewCell: UITableViewCell {
         movieImage.layer.cornerRadius = 10
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView?.image = nil
+        subscriber?.cancel()
     }
 
 }

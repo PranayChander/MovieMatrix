@@ -16,12 +16,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.collectionViewLayout = MovieCollectionViewLayout()
-        // Do any additional setup after loading the view.
-        collectionView.register(UINib(nibName: "MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        collectionView.registerCollectionViewCell(withIdentifier: MMCollectionViewCellIdentifiers.movieCell)
     }
 }
 
@@ -31,7 +26,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MMCollectionViewCellIdentifiers.movieCell, for: indexPath) as? MovieCollectionViewCell
         return cell!
     }
     

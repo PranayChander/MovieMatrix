@@ -14,12 +14,6 @@ class MMNetworkClient {
     static let apiKey = "651957a2e8ec299667a8322ff63576c7"
     static let reachability = NetworkReachabilityManager()
     
-    
-    //TODO: Pranay: Check whether static/ singleton
-    //TODO: Pranay: Check reachablity for all services
-    //TODO: Pranay: Port NetworkServices to Alamofire
-    //TODO: Pranay: Check whether to implement Alamofire Reachablity Listener
-    
     struct Auth {
         static var accountId = 0
         static var requestToken = MMUtilities.sharedInstance.getRequestToken() ?? ""
@@ -174,14 +168,18 @@ class MMNetworkClient {
     class func getMovieImage(imageName: String, completion: @escaping (UIImage?, Error?) -> Void) {
         let imageURL = Endpoints.getMovieImage(imageName).url
         URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
-            if error == nil {
+            if let localError = error as? URLError{
+                //Checking For Constrained Network Reason.low data network
+                if localError.networkUnavailableReason == .constrained {
+                    //URL Session.fetch low resolusion image
+                }
+                completion(nil, error)
+            } else {
                 if let data = data {
                     completion(UIImage(data: data), nil)
                 } else {
                     completion(nil, error)
                 }
-            } else {
-                completion(nil, error)
             }
         }.resume()
     }
@@ -261,6 +259,26 @@ class MMNetworkClient {
                 completion(false, error)
             }
         }
+        task.resume()
+    }
+}
+
+//Mark: A network request in the background
+extension MMNetworkClient {
+    class func performMMSessionNetworkRequest() {
+        let config = URLSessionConfiguration.background(withIdentifier: "com.mm.background.url.example")
+        
+        //waits for connection to end
+        config.waitsForConnectivity = true
+        config.isDiscretionary = true
+        let delegate = MMNetworkClientSessionDelegate()
+        let url = URL(string: "https://www.google.com")!
+        
+        let delegateQueue = OperationQueue()
+        let session = URLSession(configuration: config, delegate: delegate, delegateQueue: delegateQueue)
+        
+        let task = session.dataTask(with: url)
+        task.earliestBeginDate = Date(timeIntervalSinceNow: 60) //One minute from now
         task.resume()
     }
 }

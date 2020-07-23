@@ -9,14 +9,12 @@
 import UIKit
 
 class FavoritesViewController: UIViewController {
-    
     @IBOutlet weak private var tableView: UITableView!
-    
     private var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "SearchMovieTableViewCell", bundle: nil), forCellReuseIdentifier: MMTableViewCellIdentifiers.searchTableCell)
+        tableView.registerTableViewCell(withIdentifier: MMTableViewCellIdentifiers.searchCell)
         tableView.tableFooterView = UIView()
         _ = MMNetworkClient.getFavorites(completion: { (movies, error) in
             MovieModel.favorites = movies
@@ -53,7 +51,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MMTableViewCellIdentifiers.searchTableCell) as? SearchMovieTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MMTableViewCellIdentifiers.searchCell) as? SearchMovieTableViewCell
         let movie = MovieModel.favorites[indexPath.row]
         cell?.movieName.text = movie.title
         cell?.releaseDate.text = MMUtilities.sharedInstance.getformattedDateForString(dateString: movie.releaseDate)
