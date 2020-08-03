@@ -19,12 +19,16 @@ struct ProfileDetailAPIService: APIService {
     typealias Request = ProfileDetailsRequest
     
     static func performNetworkService(request: ProfileDetailsRequest, completion: @escaping ((Response) -> Void)) {
-        if MMEnvironment.current == .MOCKED {
+//        if MMEnvironment.current == .MOCKED {
             MMAlamofireNetworkService.fetchLocalJSON(request) { (data) in
-                completion(Response(data: data, error: data == nil ? MMError.invalidResponse : nil))
-            }
-        } else {
-            MMAlamofireNetworkService.performNetworkService(request, completion: completion)
+                if let json = data, let profileDetails = json["profileDetails"] as? [String: Any] {
+                    UserProfile.saveUserDetails(json: profileDetails)
+                    completion(Response(data: data, error: data == nil ? MMError.invalidResponse : nil))
+                    
+                }
+//            }
+//        } else {
+//            MMAlamofireNetworkService.performNetworkService(request, completion: completion)
         }
     }
 }

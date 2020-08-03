@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        MMPersistentStore.sharedInstance.resetMemoryContext()
         if MMUtilities.sharedInstance.isValidSession() {
             let MMtabBar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MMTabBarController") as? MMTabBarController
             window?.rootViewController = MMtabBar
@@ -85,11 +86,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        MMPersistentStore.sharedInstance.save(context: MMPersistentStore.sharedInstance.mainManagedObjectContext)
         showSplashScreen(shouldShow: true)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         showSplashScreen(shouldShow: false)
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        MMPersistentStore.sharedInstance.save(context: MMPersistentStore.sharedInstance.mainManagedObjectContext)
     }
     
     func showSplashScreen(shouldShow: Bool) {

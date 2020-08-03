@@ -1,6 +1,11 @@
 {
     "profileDetails": {
-        "name": "pranay",
-        "userID": "786105"
+        "first_name": "pranay",
+        "last_name": "chander",
+        "status": "Active",
+        "phone_number": "7204248740",
+        "city": "mangaluru",
+        "country": "india",
+        "user_id": 786105
     }
 }

@@ -32,4 +32,7 @@ struct MMStringConstants {
     static let OK = "OK"
 }
 
+struct MMErrorStrings {
+    static let coreDataFetchError = "Could Fetch From Persistent Store"
+}
 

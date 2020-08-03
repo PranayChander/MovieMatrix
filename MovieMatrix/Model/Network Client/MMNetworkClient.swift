@@ -71,6 +71,9 @@ class MMNetworkClient {
                 return
             }
             let decoder = JSONDecoder()
+            
+            // can be used if snakeCasing followed for all Get Requests
+//            decoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
                 let responseObject = try decoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
@@ -130,6 +133,21 @@ class MMNetworkClient {
                 completion([], error)
             }
         }
+    }
+    
+    class func getWatchlistCRD(completion: @escaping ([UserMovie]?, Error?) -> Void) {
+        URLSession.shared.dataTask(with: Endpoints.getWatchlist.url) { (data, response, error) in
+            if let data = data {
+                do {
+                    let watchListJson = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                    UserMovie.saveUserMovies(movieJSON: watchListJson["results"] as! [[String: Any]], user: UserProfile.getUserDetails()!)
+                    completion(nil,nil)
+                } catch {
+                    completion(nil,nil)
+                }
+                completion(nil,nil)
+            }
+        }.resume()
     }
     
     class func getFavorites(completion: @escaping([Movie],Error?) -> Void) {

@@ -44,7 +44,7 @@ class BannerViewController: OverlayViewController {
         let topAnchor: NSLayoutConstraint
         topAnchor = bannerView.topAnchor.constraint(greaterThanOrEqualTo: window.topAnchor, constant: .standardBannerPadding)
         
-        self.widthConstraint = bannerView.widthAnchor.constraint(equalToConstant: .maxBannerWidth)
+        self.widthConstraint = bannerView.widthAnchor.constraint(lessThanOrEqualToConstant: .maxBannerWidth)
         self.leadingConstraint = bannerView.leadingAnchor.constraint(equalTo: window.safeAreaLayoutGuide.leadingAnchor, constant: .standardBannerPadding)
         self.trailingConstraint = bannerView.trailingAnchor.constraint(equalTo: window.safeAreaLayoutGuide.trailingAnchor, constant: -.standardBannerPadding)
         
