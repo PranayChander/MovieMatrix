@@ -8,15 +8,14 @@
 //
 
 import Foundation
-import CoreData
+import CoreData 
 
-
-extension UserMovie {
-
+extension UserMovie: Managed {
+    
     @nonobjc public class func fetchMovieRequest() -> NSFetchRequest<UserMovie> {
         return NSFetchRequest<UserMovie>(entityName: "UserMovie")
     }
-
+    
     @NSManaged public var adult: Bool
     @NSManaged public var backdropPath: String?
     @NSManaged public var genreIds: [Int64]?
@@ -37,77 +36,36 @@ extension UserMovie {
     @NSManaged public var user: UserProfile?
     
     @nonobjc public class func saveUserMovies(movieJSON: [[String: Any]], user: UserProfile, isFavorites: Bool = false, isWatchlisted: Bool = false) {
-        let context = MMPersistentStore.sharedInstance.mainManagedObjectContext
-        for movie in movieJSON {
-            let movieID = movie["id"] as! Int
-            let fetchMovieWithIDRequest = fetchMovieRequest()
-            let userPredicate = NSPredicate(format: "user.userId == %d", user.userId)
-            let moviePredicate = NSPredicate(format: "id == %d", movieID)
-            let sortDiscriptor = NSSortDescriptor(key: "id", ascending: false)
-            fetchMovieWithIDRequest.sortDescriptors = [sortDiscriptor]
-            fetchMovieWithIDRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [moviePredicate, userPredicate])
-            
-            var userMovie: UserMovie?
-            context.perform {
-                do {
-                    userMovie = try context.fetch(fetchMovieWithIDRequest).first
-                } catch {
-                    print(MMErrorStrings.coreDataFetchError)
-                }
-                if let fetchedMovie = userMovie {
-                    fetchedMovie.genreIds = movie["genre_ids"] as? [Int64]
-                    fetchedMovie.adult = movie["adult"] as? Bool ?? false
-                    if isFavorites {
-                      fetchedMovie.isFavorite = isFavorites
-                    } else {
-                        fetchedMovie.isWatchlisted = isWatchlisted
-                    }
-                    
-                    fetchedMovie.video = movie["video"] as? Bool ?? false
-                    fetchedMovie.backdropPath = movie["backdrop_path"] as? String
-                    fetchedMovie.originalLanguage = movie["original_language"] as? String
-                    fetchedMovie.originalTitle = movie["original_title"] as? String
-                    fetchedMovie.overview = movie["overview"] as? String
-                    fetchedMovie.posterPath = movie["poster_path"] as? String
-                    fetchedMovie.releaseDate = movie["release_date"] as? String
-                    fetchedMovie.releaseYear = String(fetchedMovie.releaseDate?.prefix(4) ?? "")
-                    fetchedMovie.title = movie["title"] as? String
-                    fetchedMovie.popularity = movie["popularity"] as? Double ?? 0.0
-                    fetchedMovie.voteCount = movie["voteCount"] as? Int64 ?? 0
-                    fetchedMovie.voteAverage = movie["voteAverage"] as? Double ?? 0.0
-                    
-                    MMPersistentStore.sharedInstance.save(context: context)
+        let context = MMPersistentStore.sharedInstance.privateManagedObjectContext
+        
+        context.perform {
+            for movie in movieJSON {
+                let movieID = movie["id"] as! Int
+                let moviePredicate = NSPredicate(format: "id == %d", movieID)
+                let fetchedMovie = UserMovie.findOrCreate(in: context, matching: moviePredicate) { (_) in }
+                fetchedMovie.id = movie["id"] as? Int64 ?? 0
+                fetchedMovie.user = user
+                fetchedMovie.genreIds = movie["genre_ids"] as? [Int64]
+                fetchedMovie.adult = movie["adult"] as? Bool ?? false
+                if isFavorites {
+                    fetchedMovie.isFavorite = isFavorites
                 } else {
-                    let fetchedMovie = NSEntityDescription.insertNewObject(forEntityName: "UserMovie", into: context) as! UserMovie
-                    fetchedMovie.id = movie["id"] as? Int64 ?? 0
-                    fetchedMovie.user = user
-                    fetchedMovie.genreIds = movie["genre_ids"] as? [Int64]
-                    fetchedMovie.adult = movie["adult"] as? Bool ?? false
-                    if isFavorites {
-                      fetchedMovie.isFavorite = isFavorites
-                    } else {
-                        fetchedMovie.isWatchlisted = isWatchlisted
-                    }
-                    
-                    fetchedMovie.video = movie["video"] as? Bool ?? false
-                    fetchedMovie.backdropPath = movie["backdrop_path"] as? String
-                    fetchedMovie.originalLanguage = movie["original_language"] as? String
-                    fetchedMovie.originalTitle = movie["original_title"] as? String
-                    fetchedMovie.overview = movie["overview"] as? String
-                    fetchedMovie.posterPath = movie["poster_path"] as? String
-                    fetchedMovie.releaseDate = movie["release_date"] as? String
-                    fetchedMovie.releaseYear = String(fetchedMovie.releaseDate?.prefix(4) ?? "")
-                    fetchedMovie.title = movie["title"] as? String
-                    fetchedMovie.popularity = movie["popularity"] as? Double ?? 0.0
-                    fetchedMovie.voteCount = movie["voteCount"] as? Int64 ?? 0
-                    fetchedMovie.voteAverage = movie["voteAverage"] as? Double ?? 0.0
-                    
-                    MMPersistentStore.sharedInstance.save(context: context)
+                    fetchedMovie.isWatchlisted = isWatchlisted
                 }
-                
+                fetchedMovie.video = movie["video"] as? Bool ?? false
+                fetchedMovie.backdropPath = movie["backdrop_path"] as? String
+                fetchedMovie.originalLanguage = movie["original_language"] as? String
+                fetchedMovie.originalTitle = movie["original_title"] as? String
+                fetchedMovie.overview = movie["overview"] as? String
+                fetchedMovie.posterPath = movie["poster_path"] as? String
+                fetchedMovie.releaseDate = movie["release_date"] as? String
+                fetchedMovie.releaseYear = String(fetchedMovie.releaseDate?.prefix(4) ?? "")
+                fetchedMovie.title = movie["title"] as? String
+                fetchedMovie.popularity = movie["popularity"] as? Double ?? 0.0
+                fetchedMovie.voteCount = movie["vote_count"] as? Int64 ?? 0
+                fetchedMovie.voteAverage = movie["vote_average"] as? Double ?? 0.0
             }
-            
+            MMPersistentStore.sharedInstance.save(context: context)
         }
     }
-    
 }

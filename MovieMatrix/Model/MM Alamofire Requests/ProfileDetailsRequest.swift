@@ -8,10 +8,9 @@
 
 import Foundation
 
-
 struct ProfileDetailsRequest: GETRequest {
     var endpoint = "https://medium.com/@chetan15aga/swift-protocols-properties-distinction-get-get-set-32a34a7f16e9"
-    var localFileName = "MMProfileDetailsResponse"
+    var localFileName = ""
 }
 
 

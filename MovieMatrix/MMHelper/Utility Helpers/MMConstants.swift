@@ -21,10 +21,17 @@ struct MMSegueIdentifiers {
 
 struct MMTableViewCellIdentifiers {
     static let searchCell = "SearchMovieTableViewCell"
+    static let movieListCell = "MovieListTableViewCell"
 }
 
 struct MMCollectionViewCellIdentifiers {
-    static let movieCell = "MovieCollectionViewCell"
+    static let movieRegularCellWithCV = "MovieRegularCollectionViewCellWithCollectionView"
+    static let movieRegularCell = "MovieRegularCollectionViewCell"
+    static let movieCategoryCellWithCV = "MovieCategoryCollectionViewCellWithCollectionView"
+    static let movieCategoryCell = "MovieCategoryCollectionViewCell"
+    static let movieWideCellWithCV = "MovieWideCollectionViewCellWithCollectionView"
+    static let movieWideCell = "MovieWideCollectionViewCell"
+    static let movieListCellWithTV = "MovieListCollectionViewCellWithTableView"
 }
 
 struct MMStringConstants {
@@ -34,5 +41,6 @@ struct MMStringConstants {
 
 struct MMErrorStrings {
     static let coreDataFetchError = "Could Fetch From Persistent Store"
+    static let noUserError = "User doesnt exist"
 }
 

@@ -55,10 +55,6 @@ class ProfileViewController: UIViewController {
 //        MMNetworkClient.performMMSessionNetworkRequest()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(animate)))
         
-        MMNetworkClient.getWatchlistCRD { (prof, error) in
-            print("Processed")
-        }
-        
     }
     
     func setupLabels() {

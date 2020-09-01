@@ -17,7 +17,11 @@ import Foundation
 //Conforming to Equatable so that movies can be filtered based on struct
 // All attributes conform to equatable in the struct
 
-struct Movie: Codable, Equatable {
+struct Movie: Codable, Equatable, Hashable {
+//    let identifier = UUID()
+    
+    
+    
     let posterPath: String?
     let adult: Bool
     let overview: String
@@ -52,5 +56,12 @@ struct Movie: Codable, Equatable {
         case voteCount = "vote_count"
         case video
         case voteAverage = "vote_average"
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.id == rhs.id
     }
 }

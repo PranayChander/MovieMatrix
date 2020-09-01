@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension UserProfile {
+extension UserProfile: Managed {
     
     @nonobjc public class func fetchUserProfileRequest() -> NSFetchRequest<UserProfile> {
         return NSFetchRequest<UserProfile>(entityName: "UserProfile")
@@ -27,59 +27,28 @@ extension UserProfile {
     @NSManaged public var movie: UserMovie?
     
     @nonobjc public class func saveUserDetails(json: [String: Any]) {
-        let context = MMPersistentStore.sharedInstance.mainManagedObjectContext
-        var user: UserProfile?
+        let context = MMPersistentStore.sharedInstance.privateManagedObjectContext
         context.perform {
-            let fetchRequest = fetchUserProfileRequest()
-            let sortD = NSSortDescriptor(key: "userId", ascending: false)
-            fetchRequest.sortDescriptors = [sortD]
-            //            fetchRequest.fetchBatchSize = 5
-            //            fetchRequest.fetchLimit = 2
-            //            fetchRequest.propertiesToGroupBy = ["firstName"]
-            //            fetchRequest.propertiesToFetch
-            do {
-                user =  try context.fetch(fetchRequest).first
-            } catch {
-                print("User Fetch Rewuest failed")
-            }
-            if let userEntity = user {
-                userEntity.userId = json["user_id"] as! Int64
-                userEntity.firstName = json["first_name"] as? String
-                userEntity.lastName = json["last_name"] as? String
-                userEntity.phoneNumber = json["phone_number"] as? String
-                userEntity.status = json["status"] as? String
-                userEntity.city = json["city"] as? String
-                userEntity.country = json["country"] as? String
-                
-                MMPersistentStore.sharedInstance.save(context: context)
-            } else {
-                let userEntity = NSEntityDescription.insertNewObject(forEntityName: "UserProfile", into: context) as! UserProfile
-                userEntity.userId = json["user_id"] as! Int64
-                userEntity.firstName = json["first_name"] as? String
-                userEntity.lastName = json["last_name"] as? String
-                userEntity.phoneNumber = json["phone_number"] as? String
-                userEntity.status = json["status"] as? String
-                userEntity.city = json["city"] as? String
-                userEntity.country = json["country"] as? String
-                
-                MMPersistentStore.sharedInstance.save(context: context)
-            }
+            let userID = json["user_id"] as! Int
+            let userPredicate = NSPredicate(format: "userId == %d", userID)
+            
+            let userEntity = UserProfile.findOrCreate(in: context, matching: userPredicate) { (_) in }
+            userEntity.userId = json["user_id"] as! Int64
+            userEntity.firstName = json["first_name"] as? String
+            userEntity.lastName = json["last_name"] as? String
+            userEntity.phoneNumber = json["phone_number"] as? String
+            userEntity.status = json["status"] as? String
+            userEntity.city = json["city"] as? String
+            userEntity.country = json["country"] as? String
+            
+            MMPersistentStore.sharedInstance.save(context: context)
         }
     }
     
-    @nonobjc public class func getUserDetails() -> UserProfile? {
-        let context = MMPersistentStore.sharedInstance.mainManagedObjectContext
-        var user: UserProfile?
-            let fetchRequest = fetchUserProfileRequest()
-            let sortD = NSSortDescriptor(key: "userId", ascending: false)
-            fetchRequest.sortDescriptors = [sortD]
-            do {
-                user =  try context.fetch(fetchRequest).first
-                return user
-            } catch {
-                print("User Fetch Rewuest failed")
-                return nil
-            }
-            return nil
+    @nonobjc public class func getUserDetails(completion: @escaping(UserProfile?) -> Void) {
+        let context = MMPersistentStore.sharedInstance.privateManagedObjectContext
+        context.perform {
+            completion(try! context.fetch(fetchUserProfileRequest()).first)
         }
+    }
 }

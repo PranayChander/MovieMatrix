@@ -18,9 +18,9 @@ protocol Request {
 }
 
 public final class Response {
-    let data: [String: AnyObject]?
+    let data: [String: Any]?
     let error: Error?
-    init(data: [String: AnyObject]?, error: Error?) {
+    init(data: [String: Any]?, error: Error?) {
         self.data = data
         self.error = error
     }
@@ -157,7 +157,12 @@ public class MMAlamofireNetworkService {
     static func performNetworkService(_ request: Request, parameters: [String: Any]? = nil, completion: @escaping((Response) -> Void)) {
         if MMAlamofireNetworkService.sharedInstance.isReachable() {
             AF.request(request.endpoint).response { (response) in
-                print(response)
+                if let data = response.data  {
+                    let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                    completion(Response(data: jsonData, error: nil))
+                } else {
+                    completion(Response(data: nil, error: response.error))
+                }
             }
         } else {
             completion(Response(data: nil, error: MMError.notReachable))

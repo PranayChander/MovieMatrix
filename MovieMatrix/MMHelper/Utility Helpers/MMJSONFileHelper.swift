@@ -15,9 +15,9 @@ class MMJSONFileHelper {
         var jsonResult: [String: AnyObject]?
         var filePath: String?
         if let bundleIdentifier = bundleIdentifier {
-            filePath = Bundle(identifier: bundleIdentifier)?.path(forResource: filePath, ofType: "json")
+            filePath = Bundle(identifier: bundleIdentifier)?.path(forResource: filename, ofType: "json")
         } else {
-            filePath = Bundle.main.path(forResource: filePath, ofType: "json")
+            filePath = Bundle.main.path(forResource: filename, ofType: "json")
         }
         guard let validfilePath = filePath else {
             return nil

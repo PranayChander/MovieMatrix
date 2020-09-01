@@ -64,7 +64,7 @@ extension MMUtilities {
     func getRequestToken()-> String? {
         return UserDefaults.standard.value(forKey: MMUserDefaultKeys.requestToken) as? String
     }
-    func getSessionStartTime() -> Date?{
+    func getSessionStartTime() -> Date? {
         return UserDefaults.standard.value(forKey: MMUserDefaultKeys.sessionValidityTime) as? Date
     }
     

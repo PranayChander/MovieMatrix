@@ -27,7 +27,7 @@ enum MMError: Error {
     case userChanged
     case connectionAbort
     
-    case coreDataError(Error)
+    case coreDataError(Error?)
     case genericCocoaError(Error)
     
     var description: String {
@@ -60,7 +60,7 @@ enum MMError: Error {
         case .connectionAbort:
             return "Connection aborted"
         case .coreDataError(let error):
-            return "Core data error: \(error.localizedDescription) "
+            return "Core data error: \(error?.localizedDescription ?? "General Error") "
         case .genericCocoaError(let error):
             return "Generic cocoa error: \(error.localizedDescription)"
         }

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import Combine
 
 class MMNetworkClient {
     static let apiKey = "651957a2e8ec299667a8322ff63576c7"
@@ -31,6 +32,7 @@ class MMNetworkClient {
         case oAuth
         case endSession
         case getFavorites
+        case nowShowing
         case search(String)
         case markWatchlist
         case markFavorite
@@ -45,6 +47,7 @@ class MMNetworkClient {
             case .oAuth: return "https://www.themoviedb.org/authenticate/" + Auth.requestToken + "?redirect_to=moviematrix:authenticate"
             case .endSession: return Endpoints.base + "/authentication/session" + Endpoints.apiKeyParam
             case .getFavorites: return Endpoints.base + "/account/\(Auth.accountId)/favorite/movies" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
+            case .nowShowing: return Endpoints.base + "/movie/now_playing" + Endpoints.apiKeyParam
             case .search(let query): return Endpoints.base + "/search/movie" + Endpoints.apiKeyParam + "&query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)  ?? "")"
             case .markWatchlist: return Endpoints.base + "/account/\(Auth.accountId)/watchlist" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
             case .markFavorite: return Endpoints.base + "/account/\(Auth.accountId)/favorite" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
@@ -135,23 +138,18 @@ class MMNetworkClient {
         }
     }
     
-    class func getWatchlistCRD(completion: @escaping ([UserMovie]?, Error?) -> Void) {
-        URLSession.shared.dataTask(with: Endpoints.getWatchlist.url) { (data, response, error) in
-            if let data = data {
-                do {
-                    let watchListJson = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    UserMovie.saveUserMovies(movieJSON: watchListJson["results"] as! [[String: Any]], user: UserProfile.getUserDetails()!)
-                    completion(nil,nil)
-                } catch {
-                    completion(nil,nil)
-                }
-                completion(nil,nil)
-            }
-        }.resume()
-    }
-    
     class func getFavorites(completion: @escaping([Movie],Error?) -> Void) {
         taskForGETRequest(url: Endpoints.getFavorites.url, responseType: MovieResults.self) { (response, error) in
+            if let response = response {
+                completion(response.results, nil)
+            } else {
+                completion([], error)
+            }
+        }
+    }
+    
+    class func getNowShowing(completion: @escaping([Movie],Error?) -> Void) {
+        taskForGETRequest(url: Endpoints.nowShowing.url, responseType: MovieResults.self) { (response, error) in
             if let response = response {
                 completion(response.results, nil)
             } else {

@@ -15,9 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var splashVC: UIViewController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        MMPersistentStore.sharedInstance.resetMemoryContext()
+        MMPersistentStore.sharedInstance.resetMemoryContext()
+        if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
+            UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+            }
         if MMUtilities.sharedInstance.isValidSession() {
+            MMPersistentStore.sharedInstance.resetMemoryContext()
             let MMtabBar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MMTabBarController") as? MMTabBarController
             window?.rootViewController = MMtabBar
             window?.makeKeyAndVisible()

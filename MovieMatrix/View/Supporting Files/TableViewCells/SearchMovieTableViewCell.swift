@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-class SearchMovieTableViewCell: UITableViewCell {
+class SearchMovieTableViewCell: UITableViewCell, NibLoadableView  {
     @IBOutlet weak var movieName: UILabel!
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var releaseDate: UILabel!
