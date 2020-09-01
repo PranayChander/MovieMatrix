@@ -9,16 +9,11 @@
 import Foundation
 import UIKit
 import Alamofire
+import Combine
 
 class MMNetworkClient {
     static let apiKey = "651957a2e8ec299667a8322ff63576c7"
     static let reachability = NetworkReachabilityManager()
-    
-    
-    //TODO: Pranay: Check whether static/ singleton
-    //TODO: Pranay: Check reachablity for all services
-    //TODO: Pranay: Port NetworkServices to Alamofire
-    //TODO: Pranay: Check whether to implement Alamofire Reachablity Listener
     
     struct Auth {
         static var accountId = 0
@@ -37,6 +32,7 @@ class MMNetworkClient {
         case oAuth
         case endSession
         case getFavorites
+        case nowShowing
         case search(String)
         case markWatchlist
         case markFavorite
@@ -51,6 +47,7 @@ class MMNetworkClient {
             case .oAuth: return "https://www.themoviedb.org/authenticate/" + Auth.requestToken + "?redirect_to=moviematrix:authenticate"
             case .endSession: return Endpoints.base + "/authentication/session" + Endpoints.apiKeyParam
             case .getFavorites: return Endpoints.base + "/account/\(Auth.accountId)/favorite/movies" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
+            case .nowShowing: return Endpoints.base + "/movie/now_playing" + Endpoints.apiKeyParam
             case .search(let query): return Endpoints.base + "/search/movie" + Endpoints.apiKeyParam + "&query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)  ?? "")"
             case .markWatchlist: return Endpoints.base + "/account/\(Auth.accountId)/watchlist" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
             case .markFavorite: return Endpoints.base + "/account/\(Auth.accountId)/favorite" + Endpoints.apiKeyParam + "&session_id=\(Auth.sessionId)"
@@ -77,6 +74,9 @@ class MMNetworkClient {
                 return
             }
             let decoder = JSONDecoder()
+            
+            // can be used if snakeCasing followed for all Get Requests
+//            decoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
                 let responseObject = try decoder.decode(ResponseType.self, from: data)
                 DispatchQueue.main.async {
@@ -148,6 +148,16 @@ class MMNetworkClient {
         }
     }
     
+    class func getNowShowing(completion: @escaping([Movie],Error?) -> Void) {
+        taskForGETRequest(url: Endpoints.nowShowing.url, responseType: MovieResults.self) { (response, error) in
+            if let response = response {
+                completion(response.results, nil)
+            } else {
+                completion([], error)
+            }
+        }
+    }
+    
     class func getSearchList(query: String, completion: @escaping([Movie],Error?) -> Void) -> URLSessionTask {
         let task = taskForGETRequest(url: Endpoints.search(query).url, responseType: MovieResults.self) { (response, error) in
             if let response = response {
@@ -174,14 +184,18 @@ class MMNetworkClient {
     class func getMovieImage(imageName: String, completion: @escaping (UIImage?, Error?) -> Void) {
         let imageURL = Endpoints.getMovieImage(imageName).url
         URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
-            if error == nil {
+            if let localError = error as? URLError{
+                //Checking For Constrained Network Reason.low data network
+                if localError.networkUnavailableReason == .constrained {
+                    //URL Session.fetch low resolusion image
+                }
+                completion(nil, error)
+            } else {
                 if let data = data {
                     completion(UIImage(data: data), nil)
                 } else {
                     completion(nil, error)
                 }
-            } else {
-                completion(nil, error)
             }
         }.resume()
     }
@@ -261,6 +275,26 @@ class MMNetworkClient {
                 completion(false, error)
             }
         }
+        task.resume()
+    }
+}
+
+//Mark: A network request in the background
+extension MMNetworkClient {
+    class func performMMSessionNetworkRequest() {
+        let config = URLSessionConfiguration.background(withIdentifier: "com.mm.background.url.example")
+        
+        //waits for connection to end
+        config.waitsForConnectivity = true
+        config.isDiscretionary = true
+        let delegate = MMNetworkClientSessionDelegate()
+        let url = URL(string: "https://www.google.com")!
+        
+        let delegateQueue = OperationQueue()
+        let session = URLSession(configuration: config, delegate: delegate, delegateQueue: delegateQueue)
+        
+        let task = session.dataTask(with: url)
+        task.earliestBeginDate = Date(timeIntervalSinceNow: 60) //One minute from now
         task.resume()
     }
 }

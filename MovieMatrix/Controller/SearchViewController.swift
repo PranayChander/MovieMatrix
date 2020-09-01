@@ -19,10 +19,10 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.registerTableViewCell(withIdentifier: MMTableViewCellIdentifiers.searchTableCell)
+        tableView.registerTableViewCell(withIdentifier: MMTableViewCellIdentifiers.searchCell)
         tableView.tableFooterView = UIView()
     }
-
+    
     func presentDetailViewController() {
         let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "movieDetail") as! MovieDetailViewController
         detailVC.movie = movies[selectedIndex]
@@ -64,23 +64,58 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         return movies.count
     }
     
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCell(withIdentifier: MMTableViewCellIdentifiers.searchTableCell) as? SearchMovieTableViewCell
+    //        let movie = movies[indexPath.row]
+    //        cell?.movieName.text? = movie.title
+    //        cell?.releaseDate.text = MMUtilities.sharedInstance.getformattedDateForString(dateString: movie.releaseDate)
+    //        cell?.ratingIndicator.setProgress(value: movie.voteAverage / 10.0)
+    //        if let posterPath = movie.posterPath {
+    //            MMNetworkClient.getMovieImage(imageName: posterPath) { (image, error) in
+    //                if let movieImage = image {
+    //                    DispatchQueue.main.async {
+    //                        cell?.movieImage?.image = movieImage
+    //                        cell?.setNeedsLayout()
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        return cell!
+    //    }
+    
+    
+    // Using Combine
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MMTableViewCellIdentifiers.searchTableCell) as? SearchMovieTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MMTableViewCellIdentifiers.searchCell) as! SearchMovieTableViewCell
         let movie = movies[indexPath.row]
-        cell?.movieName.text? = movie.title
-        cell?.releaseDate.text = MMUtilities.sharedInstance.getformattedDateForString(dateString: movie.releaseDate)
-        cell?.ratingIndicator.setProgress(value: movie.voteAverage / 10.0)
-        if let posterPath = movie.posterPath {
-            MMNetworkClient.getMovieImage(imageName: posterPath) { (image, error) in
-                if let movieImage = image {
-                    DispatchQueue.main.async {
-                        cell?.movieImage?.image = movieImage
-                        cell?.setNeedsLayout()
-                    }
-                }
-            }
+        cell.movieName.text? = movie.title
+        if !movie.releaseDate.isEmpty {
+            cell.releaseDate.text = MMUtilities.sharedInstance.getformattedDateForString(dateString: movie.releaseDate)
         }
-        return cell!
+        cell.ratingIndicator.setProgress(value: movie.voteAverage / 10.0)
+        
+        var urlRequest = URLRequest(url: MMNetworkClient.Endpoints.getMovieImage(movie.posterPath ?? "").url)
+        urlRequest.allowsConstrainedNetworkAccess = false
+        cell.subscriber = URLSession.shared.dataTaskPublisher(for: urlRequest).tryCatch({ (error) -> URLSession.DataTaskPublisher in
+            guard error.networkUnavailableReason == .constrained else {
+                throw error
+            }
+            // return a task with lower resolution image
+            return  URLSession.shared.dataTaskPublisher(for: urlRequest)
+        })
+            .tryMap({ (data, response) -> UIImage in
+                guard let image = UIImage(data: data) else {
+                    throw MMError.unknown
+                }
+                return image
+                
+            })
+            .retry(1)
+            .replaceError(with: UIImage(systemName: "paperplane.fill"))
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.movieImage.image, on: cell)
+    
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
