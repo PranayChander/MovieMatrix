@@ -1,0 +1,15 @@
+//
+//  ConfigMocked.xcconfig
+//  MovieMatrix
+//
+//  Created by pranay chander on 15/07/20.
+//  Copyright © 2020 pranay chander. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APPLICATION_NAME = MM MOCKED
+DISPLAY_NAME = MM MOCKED
+APP_VERSION = 0.1
+BUILD_VERSION = 0.1

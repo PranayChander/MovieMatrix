@@ -4,10 +4,55 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MovieMatrix.xcscheme_^#shared#^_</key>
+		<key>MovieMatrix - RELEASE.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>MovieMatrix -MOCKED.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>MovieMatrix- DEBUG.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>MovieMatrix.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>MovieMatrixTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>MovieMatrixUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>9D8AA4E124B3022200915BF8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9D8AA4FA24B3022600915BF8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9D8AA50524B3022600915BF8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

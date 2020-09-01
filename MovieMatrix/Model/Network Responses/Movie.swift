@@ -8,7 +8,20 @@
 
 import Foundation
 
-struct Movie: Codable, Equatable {
+//Swift provides a synthesized implementation of Equatable for the following kinds of custom types:
+//https://docs.swift.org/swift-book/LanguageGuide/Protocols.html
+//Structures that have only stored properties that conform to the Equatable protocol
+//Enumerations that have only associated types that conform to the Equatable protocol
+//Enumerations that have no associated types
+
+//Conforming to Equatable so that movies can be filtered based on struct
+// All attributes conform to equatable in the struct
+
+struct Movie: Codable, Equatable, Hashable {
+//    let identifier = UUID()
+    
+    
+    
     let posterPath: String?
     let adult: Bool
     let overview: String
@@ -43,5 +56,12 @@ struct Movie: Codable, Equatable {
         case voteCount = "vote_count"
         case video
         case voteAverage = "vote_average"
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    static func == (lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.id == rhs.id
     }
 }
