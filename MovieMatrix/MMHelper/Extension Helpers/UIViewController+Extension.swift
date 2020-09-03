@@ -10,16 +10,6 @@ import UIKit
 
 extension UIViewController {
     
-    @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
-        MMNetworkClient.endSession { (success, error) in
-            if success {
-                DispatchQueue.main.async {
-                   self.dismiss(animated: true, completion: nil)
-                }
-            }
-        }
-    }
-    
     func displayAlert(withTitle title: String, withMessage message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: MMStringConstants.OK, style: .default, handler: nil))

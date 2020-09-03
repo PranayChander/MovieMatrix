@@ -14,9 +14,7 @@ enum RegularCollectionViewType: String {
 }
 
 class MovieRegularCollectionViewCellWithCollectionView: UICollectionViewCell, NibLoadableView {
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     var type: RegularCollectionViewType = .TopRated
     
     @IBOutlet weak var title: UILabel!
@@ -43,6 +41,6 @@ extension MovieRegularCollectionViewCellWithCollectionView: UICollectionViewData
 
 extension MovieRegularCollectionViewCellWithCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return type == .TopRated ? CGSize(width: 120, height: 180) : CGSize(width: 120, height: 180 - 25)
+        return type == .TopRated ? CGSize(width: 120, height: 180) : CGSize(width: 120, height: 180 - 25)
     }
 }

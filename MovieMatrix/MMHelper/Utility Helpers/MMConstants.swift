@@ -51,4 +51,5 @@ enum StoryboardType: String {
 enum ViewController: String {
     case tabBarController = "MMTabBarController"
     case splashScreenController = "SplashScreenViewController"
+    case movieDetailController = "movieDetail"
 }

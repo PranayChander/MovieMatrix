@@ -18,5 +18,4 @@ class MovieRegularCollectionViewCell: UICollectionViewCell, NibLoadableView {
         super.awakeFromNib()
         self.movieImage.layer.cornerRadius = 10.0
     }
-
 }

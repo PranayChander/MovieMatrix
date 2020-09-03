@@ -29,10 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES">
       <TestPlans>
-         <TestPlanReference
-            reference = "container:MovieMatrixUITests/MovieMatrixUITests.xctestplan"
-            default = "YES">
-         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference

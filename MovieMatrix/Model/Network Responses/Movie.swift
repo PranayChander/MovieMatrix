@@ -18,9 +18,6 @@ import Foundation
 // All attributes conform to equatable in the struct
 
 struct Movie: Codable, Equatable, Hashable {
-//    let identifier = UUID()
-    
-    
     
     let posterPath: String?
     let adult: Bool

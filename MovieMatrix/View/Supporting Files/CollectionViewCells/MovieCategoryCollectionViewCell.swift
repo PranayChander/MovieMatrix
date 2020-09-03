@@ -9,10 +9,9 @@
 import UIKit
 
 class MovieCategoryCollectionViewCell: UICollectionViewCell, NibLoadableView  {
-    @IBOutlet weak var categoryImage: UIImageView!
+    @IBOutlet weak private var categoryImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         categoryImage.layer.cornerRadius = 5.0
-        // Initialization code
     }
 }

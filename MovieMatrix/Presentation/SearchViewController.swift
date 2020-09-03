@@ -32,7 +32,7 @@ class SearchViewController: UIViewController {
     }
     
     func presentDetailViewController(selectedMovie: Movie) {
-        let detailVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "movieDetail") as! MovieDetailViewController
+        let detailVC = UIStoryboard().getVC(storyboard: .main, viewControllerIdentifier: .movieDetailController) as! MovieDetailViewController
         detailVC.movie = selectedMovie
         present(detailVC, animated: true, completion: nil)
     }

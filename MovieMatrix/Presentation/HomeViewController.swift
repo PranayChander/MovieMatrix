@@ -11,14 +11,30 @@ import UIKit
 class HomeViewController: UIViewController {
     
     enum HomeSections: Int, CaseIterable {
-        case NowShowing, Genres, TopRated, Popular, Upcoming
+        case nowShowing, genres, topRated, popular, upcoming
+        
+        var cellHeight: CGFloat {
+            var height: CGFloat = 0
+            switch self {
+            case .nowShowing:
+                height = 240
+            case .genres:
+                height = 100
+            case .topRated:
+                height = 220
+            case .popular:
+                height = 220 - 25
+            case .upcoming:
+                height = 40 + (3 * 75) + 10
+            }
+            return height
+        }
     }
-
-    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        collectionView.collectionViewLayout = MovieCollectionViewLayout()
         registerCollectionViewCells()
         
         NowShowingAPIService.performNetworkService(request: NowShowingNetworkRequest()) { (Response) in
@@ -46,43 +62,33 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             let cell: MovieWideCollectionViewCellWithCollectionView = collectionView.MMDequeueReusableCell(for: indexPath)
-                cell.updateCollection()
+            cell.updateCollection()
             return cell
-        } else if indexPath.section == 1 {
+        case 1:
             let cell: MovieCategoryCollectionViewCellWithCollectionView = collectionView.MMDequeueReusableCell(for: indexPath)
             return cell
-        } else if indexPath.section == 2 {
+        case 2:
             let cell: MovieRegularCollectionViewCellWithCollectionView = collectionView.MMDequeueReusableCell(for: indexPath)
             cell.type = .TopRated
-        return cell
-        }
-        else if indexPath.section == 3 {
+            return cell
+        case 3:
             let cell: MovieRegularCollectionViewCellWithCollectionView = collectionView.MMDequeueReusableCell(for: indexPath)
             cell.type = .Popular
-        return cell
-        }
-        else {
+            return cell
+        case 4:
             let cell: MovieListCollectionViewCellWithTableView = collectionView.MMDequeueReusableCell(for: indexPath)
-        return cell
+            return cell
+        default:
+            return UICollectionViewCell()
         }
     }
-    
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
-            return CGSize(width: self.view.frame.width, height: 240)
-        } else if indexPath.section == 1 {
-            return CGSize(width: self.view.frame.width, height: 100)
-        } else if indexPath.section == 2 {
-            return CGSize(width: self.view.frame.width, height: 220)
-        } else if indexPath.section == 3 {
-            return CGSize(width: self.view.frame.width, height: 220 - 25 )
-        } else {
-            return CGSize(width: self.view.frame.width, height: 40 + (3 * 75) + 10)
-        }
+        return CGSize(width: self.view.frame.width, height: HomeSections(rawValue: indexPath.section)!.cellHeight)
     }
 }
