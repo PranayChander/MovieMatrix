@@ -15,12 +15,10 @@ class SearchMovieTableViewCell: UITableViewCell, NibLoadableView  {
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var ratingIndicator: MovieRatingView!
     
-    // Using combine in searchVC
     var subscriber: AnyCancellable?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         movieImage.layer.cornerRadius = 10
     }
 
@@ -29,5 +27,4 @@ class SearchMovieTableViewCell: UITableViewCell, NibLoadableView  {
         imageView?.image = nil
         subscriber?.cancel()
     }
-
 }

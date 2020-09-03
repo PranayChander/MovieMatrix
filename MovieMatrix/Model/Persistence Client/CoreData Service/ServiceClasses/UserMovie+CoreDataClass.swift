@@ -11,6 +11,4 @@ import Foundation
 import CoreData
 
 @objc(UserMovie)
-public class UserMovie: NSManagedObject {
-
-}
+public class UserMovie: NSManagedObject {}

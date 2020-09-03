@@ -8,8 +8,6 @@
 
 import Foundation
 
-//https://developer.apple.com/documentation/foundation/bundle
-
 class MMJSONFileHelper {
     static func fetchJSON(_ filename: String, bundleIdentifier: String? = nil) -> [String: AnyObject]? {
         var jsonResult: [String: AnyObject]?

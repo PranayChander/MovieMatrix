@@ -123,6 +123,7 @@ extension WatchlistViewController: NSFetchedResultsControllerDelegate {
             fatalError(MMError.coreDataError(nil).localizedDescription)
         }
     }
+    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }

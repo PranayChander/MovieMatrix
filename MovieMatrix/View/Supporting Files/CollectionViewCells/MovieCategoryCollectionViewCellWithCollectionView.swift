@@ -16,7 +16,6 @@ class MovieCategoryCollectionViewCellWithCollectionView: UICollectionViewCell, N
         super.awakeFromNib()
         collectionView.MMRegister(MovieCategoryCollectionViewCell.self)
     }
-
 }
 
 extension MovieCategoryCollectionViewCellWithCollectionView: UICollectionViewDataSource {

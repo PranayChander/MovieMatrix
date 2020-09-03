@@ -10,14 +10,6 @@ import Foundation
 import os.log
 
 class MMUtilities {
-    //        DateComponentsFormatter
-    //        DateIntervalFormatter
-    //        RelativeDateTimeFormatter
-    //        DateFormatter().setLocalizedDateFormatFromTemplate(T##dateFormatTemplate: String##String)
-    //        PersonNameComponentsFormatter - for monograms
-    //        ListFormatter
-    //        NumberFormatter
-    
     
     static let sharedInstance = MMUtilities()
     private init(){}
@@ -29,19 +21,6 @@ class MMUtilities {
         dateFormatter.dateStyle = .long
         let longFormatString = dateFormatter.string(from: date!)
         return longFormatString
-    }
-    func operationQ() {
-//        let op = Operation()
-//        let op2 = Operation()
-//        op2.addDependency(op)
-//        op2.obse
-//        let oprationQues = OperationQueue()
-//        oprationQues.addOperations([op, op2], waitUntilFinished: true)
-//        let blk = BlockOperation()
-//        DispatchQueue.global().async {
-//            <#code#>
-//        }
-    
     }
 }
 

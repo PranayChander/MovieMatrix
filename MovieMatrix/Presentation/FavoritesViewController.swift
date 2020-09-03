@@ -14,7 +14,6 @@ class FavoritesViewController: UIViewController {
     @IBOutlet weak private var tableView: UITableView!
     
     private var dataSource: UITableViewDiffableDataSource<Int, UserMovie>!
-    
     private var selectedMovie: UserMovie?
     
     lazy var fetchedResultsController: NSFetchedResultsController<UserMovie> = {
@@ -26,16 +25,13 @@ class FavoritesViewController: UIViewController {
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: MMPersistentStore.sharedInstance.mainManagedObjectContext,
                                                     sectionNameKeyPath: nil, cacheName: nil)
-        
         controller.delegate = self
-
         do {
             try controller.performFetch()
         } catch {
             let nserror = error as NSError
             fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
-
         return controller
     }()
     
@@ -46,7 +42,6 @@ class FavoritesViewController: UIViewController {
         tableView.tableFooterView = UIView()
         self.configureDataSource()
         self.updateUI()
-        
         FavoritesAPIService.performNetworkService(request: FavoritesNetworkRequest()) { (_) in}
     }
     
@@ -92,7 +87,7 @@ extension FavoritesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectMovie = dataSource.itemIdentifier(for: indexPath) {
             selectedMovie = selectMovie
-            performSegue(withIdentifier: "showDetail", sender: self)
+            performSegue(withIdentifier: MMSegueIdentifiers.movieDetail, sender: self)
         }
     }
 }
