@@ -15,13 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var splashVC: UIViewController?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         MMPersistentStore.sharedInstance.resetMemoryContext()
-        if ProcessInfo.processInfo.arguments.contains("UI-Testing") {
+        
+        if MMUtilities.sharedInstance.isUITesting() {
             UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-            }
+        }
+        
         if MMUtilities.sharedInstance.isValidSession() {
             MMPersistentStore.sharedInstance.resetMemoryContext()
-            let MMtabBar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MMTabBarController") as? MMTabBarController
+            let MMtabBar = UIStoryboard().getVC(storyboard: .main, viewControllerIdentifier: .tabBarController) as? MMTabBarController
             window?.rootViewController = MMtabBar
             window?.makeKeyAndVisible()
         }
@@ -42,26 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Core Data stack
     
     lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
         let container = NSPersistentContainer(name: "MovieMatrix")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
@@ -76,14 +62,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
     }
-    
 }
 
 extension AppDelegate {
@@ -105,7 +88,7 @@ extension AppDelegate {
         self.window?.endEditing(true)
         if shouldShow {
             if self.splashVC == nil {
-                self.splashVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SplashScreenViewController") as? SplashScreenViewController
+                self.splashVC = UIStoryboard().getVC(storyboard: .main, viewControllerIdentifier: .splashScreenController) as? SplashScreenViewController
             }
             self.window?.addSubview(self.splashVC!.view)
         } else {

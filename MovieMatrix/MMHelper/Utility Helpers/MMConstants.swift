@@ -44,3 +44,11 @@ struct MMErrorStrings {
     static let noUserError = "User doesnt exist"
 }
 
+enum StoryboardType: String {
+    case main = "Main"
+}
+
+enum ViewController: String {
+    case tabBarController = "MMTabBarController"
+    case splashScreenController = "SplashScreenViewController"
+}

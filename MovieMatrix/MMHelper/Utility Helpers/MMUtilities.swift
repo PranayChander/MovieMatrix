@@ -80,5 +80,9 @@ extension MMUtilities {
     func logMessage(_ message: String) {
         os_log("Log Messag", message)
     }
+    
+    func isUITesting() -> Bool {
+        return ProcessInfo.processInfo.arguments.contains("UI-Testing")
+    }
 }
 
